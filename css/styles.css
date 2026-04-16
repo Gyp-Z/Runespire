@@ -1,0 +1,353 @@
+/* ============================================================
+   RUNESPIRE — Coming Soon
+   Dark fantasy MMO aesthetic
+   ============================================================ */
+
+/* ── Reset & Base ─────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg:          #0a0a0f;
+  --bg-mid:      #0f0e1a;
+  --gold:        #c9a84c;
+  --gold-light:  #e8c96a;
+  --gold-dim:    #8a6f30;
+  --purple:      #6b21a8;
+  --purple-light:#9333ea;
+  --text:        #e8e0d0;
+  --text-muted:  #8a8070;
+  --border:      rgba(201, 168, 76, 0.2);
+  --glow:        rgba(201, 168, 76, 0.15);
+  --font-heading: 'Cinzel', Georgia, serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Particle Canvas ──────────────────────────────────────── */
+#particles {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ── Background Overlay ───────────────────────────────────── */
+.bg-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(107, 33, 168, 0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(201, 168, 76, 0.07) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 50% at 20% 70%, rgba(107, 33, 168, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  animation: bgPulse 12s ease-in-out infinite alternate;
+}
+
+@keyframes bgPulse {
+  0%   { opacity: 0.8; }
+  100% { opacity: 1; }
+}
+
+/* ── Hero Layout ──────────────────────────────────────────── */
+.hero {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem 2rem;
+}
+
+.hero-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  max-width: 560px;
+  width: 100%;
+  text-align: center;
+}
+
+/* ── Crest SVG ────────────────────────────────────────────── */
+.crest {
+  width: 64px;
+  height: 64px;
+  filter: drop-shadow(0 0 12px rgba(201, 168, 76, 0.5));
+  animation: floatCrest 4s ease-in-out infinite;
+}
+
+@keyframes floatCrest {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-6px); }
+}
+
+/* ── Title ────────────────────────────────────────────────── */
+.title {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: clamp(2.8rem, 10vw, 5.5rem);
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  text-shadow:
+    0 0 30px rgba(201, 168, 76, 0.6),
+    0 0 60px rgba(201, 168, 76, 0.3),
+    0 2px 4px rgba(0, 0, 0, 0.8);
+  animation: titleGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+  0%   { text-shadow: 0 0 30px rgba(201,168,76,0.5), 0 0 60px rgba(201,168,76,0.2), 0 2px 4px rgba(0,0,0,0.8); }
+  100% { text-shadow: 0 0 40px rgba(201,168,76,0.8), 0 0 80px rgba(201,168,76,0.4), 0 2px 4px rgba(0,0,0,0.8); }
+}
+
+/* ── Title Rule ───────────────────────────────────────────── */
+.title-rule {
+  width: 180px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.6;
+  margin-top: -0.5rem;
+}
+
+/* ── Tagline ──────────────────────────────────────────────── */
+.tagline {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: clamp(0.85rem, 2.5vw, 1rem);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: -0.5rem;
+}
+
+/* ── Server IP Badge ──────────────────────────────────────── */
+.ip-badge {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 0.65rem 1.4rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: rgba(201, 168, 76, 0.04);
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  user-select: none;
+}
+
+.ip-badge:hover {
+  border-color: rgba(201, 168, 76, 0.5);
+  background: rgba(201, 168, 76, 0.08);
+  box-shadow: 0 0 16px rgba(201, 168, 76, 0.12);
+}
+
+.ip-badge:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.ip-label {
+  font-family: var(--font-heading);
+  font-size: 0.55rem;
+  letter-spacing: 0.25em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.ip-value {
+  font-family: 'Courier New', monospace;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--gold-light);
+  letter-spacing: 0.05em;
+}
+
+.ip-copy-hint {
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  opacity: 0.6;
+  text-transform: uppercase;
+}
+
+/* ── Signup Section ───────────────────────────────────────── */
+.signup-wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.signup-heading {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.form-row {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.form-row input[type="email"] {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  min-width: 0;
+}
+
+.form-row input[type="email"]::placeholder {
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+.form-row input[type="email"]:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 12px rgba(201, 168, 76, 0.15);
+}
+
+.btn-primary {
+  padding: 0.75rem 1.4rem;
+  background: transparent;
+  border: 1px solid var(--gold);
+  border-radius: 5px;
+  color: var(--gold);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  white-space: nowrap;
+}
+
+.btn-primary:hover {
+  background: var(--gold);
+  color: var(--bg);
+  box-shadow: 0 0 20px rgba(201, 168, 76, 0.3);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.form-note {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  opacity: 0.5;
+  letter-spacing: 0.03em;
+}
+
+.form-success {
+  display: none;
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  color: var(--gold);
+  letter-spacing: 0.08em;
+  padding: 0.6rem 0;
+  animation: fadeIn 0.4s ease;
+}
+
+.form-success.visible {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Discord Button ───────────────────────────────────────── */
+.btn-discord {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.5rem;
+  background: rgba(88, 101, 242, 0.12);
+  border: 1px solid rgba(88, 101, 242, 0.35);
+  border-radius: 5px;
+  color: #9aa0f5;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s, color 0.2s;
+}
+
+.btn-discord:hover {
+  background: rgba(88, 101, 242, 0.22);
+  border-color: rgba(88, 101, 242, 0.65);
+  color: #c5c8ff;
+  box-shadow: 0 0 16px rgba(88, 101, 242, 0.2);
+}
+
+.discord-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* ── Footer ───────────────────────────────────────────────── */
+.site-footer {
+  position: relative;
+  z-index: 2;
+  padding: 1.25rem 1.5rem;
+  text-align: center;
+  border-top: 1px solid rgba(201, 168, 76, 0.08);
+}
+
+.site-footer p {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  opacity: 0.45;
+  letter-spacing: 0.05em;
+}
+
+/* ── Mobile ───────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .form-row {
+    flex-direction: column;
+  }
+
+  .btn-primary {
+    width: 100%;
+    padding: 0.75rem;
+  }
+
+  .hero-inner {
+    gap: 1.25rem;
+  }
+}

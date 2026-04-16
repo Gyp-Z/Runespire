@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Runespire — Coming Soon</title>
+  <meta name="description" content="A new Hytale adventure is coming. Sign up to be notified when Runespire launches." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- Animated particle canvas -->
+  <canvas id="particles"></canvas>
+
+  <!-- Background gradient overlay -->
+  <div class="bg-overlay"></div>
+
+  <!-- Main content -->
+  <main class="hero">
+    <div class="hero-inner">
+
+      <!-- Crest icon -->
+      <div class="crest" aria-hidden="true">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M32 4L36 16H48L38 24L42 36L32 28L22 36L26 24L16 16H28L32 4Z" fill="#c9a84c" opacity="0.9"/>
+          <path d="M32 20L34 26H40L35 30L37 36L32 32L27 36L29 30L24 26H30L32 20Z" fill="#0a0a0f"/>
+          <line x1="32" y1="36" x2="32" y2="58" stroke="#c9a84c" stroke-width="2" opacity="0.6"/>
+          <line x1="20" y1="46" x2="44" y2="46" stroke="#c9a84c" stroke-width="1.5" opacity="0.4"/>
+        </svg>
+      </div>
+
+      <!-- Title -->
+      <h1 class="title">RUNESPIRE</h1>
+      <div class="title-rule"></div>
+      <p class="tagline">A New Adventure Awaits</p>
+
+      <!-- Server IP badge -->
+      <div class="ip-badge" id="ipBadge" title="Click to copy server IP" role="button" tabindex="0" aria-label="Server IP: 66.45.235.138 — click to copy">
+        <span class="ip-label">SERVER IP</span>
+        <span class="ip-value">66.45.235.138</span>
+        <span class="ip-copy-hint" id="copyHint">Click to copy</span>
+      </div>
+
+      <!-- Signup section -->
+      <div class="signup-wrap">
+        <p class="signup-heading">Be the first to know when we go live.</p>
+
+        <form
+          id="signupForm"
+          action="https://formspree.io/f/YOUR_FORM_ID"
+          method="POST"
+        >
+          <div class="form-row">
+            <input
+              type="email"
+              name="email"
+              placeholder="your@email.com"
+              required
+              autocomplete="email"
+              aria-label="Email address"
+            />
+            <button type="submit" class="btn-primary">NOTIFY ME</button>
+          </div>
+          <p class="form-note">No spam. Just the launch announcement.</p>
+          <div class="form-success" id="formSuccess" aria-live="polite">
+            You're in. ⚔ See you in Runespire.
+          </div>
+        </form>
+      </div>
+
+      <!-- Discord CTA -->
+      <a href="#" class="btn-discord" id="discordBtn" aria-label="Join the Runespire Discord">
+        <svg class="discord-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.003.027.015.052.032.065a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+        </svg>
+        Join the Discord
+      </a>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>© 2025 Runespire &nbsp;·&nbsp; Not affiliated with Hytale or Aternum Game Studios</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
