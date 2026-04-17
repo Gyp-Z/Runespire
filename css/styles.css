@@ -270,6 +270,59 @@ body {
   box-shadow: 0 0 12px rgba(201, 168, 76, 0.15);
 }
 
+.form-row textarea {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  outline: none;
+  resize: vertical;
+  min-height: 80px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-row textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+.form-row textarea:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 12px rgba(201, 168, 76, 0.15);
+}
+
+.form-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  cursor: pointer;
+  text-align: left;
+}
+
+.form-checkbox input[type="checkbox"] {
+  margin-top: 2px;
+  accent-color: var(--gold);
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.form-checkbox span {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.btn-full {
+  width: 100%;
+  padding: 0.85rem;
+}
+
 .btn-primary {
   padding: 0.75rem 1.4rem;
   background: transparent;

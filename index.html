@@ -73,8 +73,20 @@
               autocomplete="email"
               aria-label="Email address"
             />
-            <button type="submit" class="btn-primary">NOTIFY ME</button>
           </div>
+          <div class="form-row">
+            <textarea
+              name="message"
+              placeholder="Anything you want to tell us? (optional)"
+              rows="3"
+              aria-label="Message"
+            ></textarea>
+          </div>
+          <label class="form-checkbox">
+            <input type="checkbox" name="email_list" value="yes" checked />
+            <span>Sign me up for updates, news, and launch announcements</span>
+          </label>
+          <button type="submit" class="btn-primary btn-full">NOTIFY ME</button>
           <p class="form-note">No spam. Just the launch announcement.</p>
           <div class="form-success" id="formSuccess" aria-live="polite">
             You're in. ⚔ See you in Runespire.
