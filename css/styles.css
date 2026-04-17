@@ -84,7 +84,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 2rem;
   max-width: 560px;
   width: 100%;
   text-align: center;

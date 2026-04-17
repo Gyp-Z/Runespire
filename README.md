@@ -26,7 +26,7 @@
 
 | Phase | Description | Status |
 |-------|-------------|--------|
-| **1** | Coming Soon page — animated background, email capture, server IP badge, Discord CTA | Built — needs Formspree ID + Vercel deploy |
+| **1** | Coming Soon page — animated background, email capture, server IP badge, Discord CTA | ✅ Complete — live on Vercel (dev branch), pending DNS switch from GoDaddy |
 | **2** | Full Wynncraft-style one-pager — hero, features/world, community, news, store teaser, footer | This Weekend |
 | **3** | Full fledged site — multiple pages, CMS, store, player stats, scalable + secure | Ongoing |
 
@@ -98,13 +98,14 @@ vercel --prod
 
 These are placeholder values in the current build. Swap them when MAC provides:
 
-| Placeholder | Location | Replace with |
-|-------------|----------|-------------|
-| `"A New Adventure Awaits"` | `index.html` tagline | MAC's actual tagline/lore one-liner |
-| `href="#"` on Discord button | `index.html` | MAC's Discord invite link |
-| `YOUR_FORM_ID` | `index.html` form action | Formspree form ID |
-| `© 2025 Runespire` | `index.html` footer | Confirm year with MAC |
-| Hero background | CSS gradient only | MAC's actual art/logo when provided |
+| Placeholder | Location | Status |
+|-------------|----------|--------|
+| Tagline | `index.html` | "A New Adventure Awaits" — swap when MAC provides |
+| Discord link | `index.html` | ✅ `discord.gg/z5cxKymK` — may expire, get permanent link from MAC |
+| Formspree ID | `index.html` | ✅ `mzdyejod` — wired in |
+| Copyright year | `index.html` footer | ✅ 2026 |
+| Hero background | CSS gradient | Swap when MAC provides proper wide banner art |
+| Logo/icon | Discord CDN URL | ✅ Circular icon wired in; R shield logo → save to `assets/images/logo.png` when ready |
 
 ---
 
