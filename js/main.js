@@ -130,7 +130,7 @@
 
 /* ── Copy Server IP (hero + about badges) ──────────────────── */
 (function initIPCopy() {
-  const SERVER_IP = '66.45.235.138';
+  const SERVER_IP = 'play.runespire.net';
 
   function attachBadge(badgeId, hintId) {
     const badge = document.getElementById(badgeId);

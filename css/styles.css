@@ -1349,3 +1349,10 @@ ul, ol { list-style: none; }
 @media (max-width: 480px) {
   .title { letter-spacing: 0.08em; }
 }
+
+/* ============================================================
+   EXPLORE PAGE
+   ============================================================ */
+.section--page-top {
+  padding-top: calc(var(--nav-height) + var(--section-pad));
+}
