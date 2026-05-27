@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Explore — Runespire</title>
+  <meta name="description" content="Explore the world of Runespire — servers, roadmap, kits, and the world map." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ===== NAV ===== -->
+  <nav class="site-nav" id="siteNav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="Runespire home">
+        <img src="https://cdn.discordapp.com/icons/1477785070197674254/c478e4f0dd5d77b28ea150be5aabb9c9.webp?size=64&quality=lossless" alt="Runespire icon" class="nav-icon" />
+        <span class="nav-wordmark">RUNESPIRE</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks" role="list">
+        <li><a href="index.html#about" class="nav-link">About</a></li>
+        <li><a href="index.html#store" class="nav-link">Store</a></li>
+        <li><a href="index.html#events" class="nav-link">Events</a></li>
+        <li><a href="explore.html" class="nav-link active">Explore</a></li>
+        <li><a href="https://discord.gg/47PJvtFb" class="nav-link nav-link--discord" target="_blank" rel="noopener noreferrer">Discord</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===== SERVERS ===== -->
+  <section id="servers" class="section section--servers section--page-top">
+    <div class="section-inner">
+      <h2 class="section-title">The Hub</h2>
+      <div class="section-rule"></div>
+      <p class="section-subtitle">Three ways to play. One community. Start where you want — and watch the world grow around you.</p>
+
+      <div class="servers-grid">
+
+        <div class="server-card">
+          <div class="server-card__step">Step 1</div>
+          <div class="server-card__header">
+            <h3 class="server-card__name">Factions</h3>
+            <span class="server-badge server-badge--active">Active</span>
+          </div>
+          <p class="server-card__desc">The starting point. Join, claim your territory, build alliances, and help grow the Runespire community from the ground up — while the MMO takes shape.</p>
+        </div>
+
+        <div class="server-card">
+          <div class="server-card__step">Step 2</div>
+          <div class="server-card__header">
+            <h3 class="server-card__name">Kitmap</h3>
+            <span class="server-badge server-badge--testing">Testing</span>
+          </div>
+          <p class="server-card__desc">Public test ground. The Kitmap is where MMO mechanics get added and showcased as they're built — open to everyone. Play it, break it, shape it.</p>
+        </div>
+
+        <div class="server-card server-card--featured">
+          <div class="server-card__step">Step 3</div>
+          <div class="server-card__header">
+            <h3 class="server-card__name">MMO</h3>
+            <span class="server-badge server-badge--progress">In Progress</span>
+          </div>
+          <p class="server-card__desc">The full vision. A deep, world-class MMO experience — custom kits, guilds, dungeons, a living economy. It takes time to build something legendary.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ROADMAP ===== -->
+  <section id="roadmap" class="section section--roadmap">
+    <div class="section-inner">
+      <h2 class="section-title">Roadmap</h2>
+      <div class="section-rule"></div>
+      <p class="section-subtitle">Here's where we've been and where we're going. Every phase brings something bigger.</p>
+
+      <ol class="roadmap-timeline" aria-label="Development roadmap">
+        <li class="roadmap-item roadmap-item--done">
+          <div class="roadmap-marker" aria-hidden="true"></div>
+          <div class="roadmap-content">
+            <span class="roadmap-phase">Phase 0</span>
+            <h3 class="roadmap-label">Foundation</h3>
+            <p class="roadmap-desc">The foundation. Core mechanics, kit PvP, and the first players.</p>
+          </div>
+        </li>
+        <li class="roadmap-item roadmap-item--active">
+          <div class="roadmap-marker" aria-hidden="true"></div>
+          <div class="roadmap-content">
+            <span class="roadmap-phase">Current</span>
+            <h3 class="roadmap-label">Open Beta</h3>
+            <p class="roadmap-desc">Doors are open. Join now, shape the server, and help us build the world.</p>
+          </div>
+        </li>
+        <li class="roadmap-item roadmap-item--upcoming">
+          <div class="roadmap-marker" aria-hidden="true"></div>
+          <div class="roadmap-content">
+            <span class="roadmap-phase">v0.5</span>
+            <h3 class="roadmap-label">Early Access</h3>
+            <p class="roadmap-desc">Expanded world, first major content drops, early store launch.</p>
+          </div>
+        </li>
+        <li class="roadmap-item roadmap-item--upcoming">
+          <div class="roadmap-marker" aria-hidden="true"></div>
+          <div class="roadmap-content">
+            <span class="roadmap-phase">v1.0</span>
+            <h3 class="roadmap-label">Full Launch</h3>
+            <p class="roadmap-desc">Full feature set, polished world, ranked seasons, and community events.</p>
+          </div>
+        </li>
+        <li class="roadmap-item roadmap-item--upcoming">
+          <div class="roadmap-marker" aria-hidden="true"></div>
+          <div class="roadmap-content">
+            <span class="roadmap-phase">v2.0</span>
+            <h3 class="roadmap-label">World Expansion</h3>
+            <p class="roadmap-desc">New biomes, dungeons, lore, and guild systems.</p>
+          </div>
+        </li>
+        <li class="roadmap-item roadmap-item--upcoming">
+          <div class="roadmap-marker" aria-hidden="true"></div>
+          <div class="roadmap-content">
+            <span class="roadmap-phase">v3.0</span>
+            <h3 class="roadmap-label">The Long Game</h3>
+            <p class="roadmap-desc">Full economy, player-run guilds, custom events, and seasonal content.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== KITS ===== -->
+  <section id="kits" class="section section--kits">
+    <div class="section-inner">
+      <h2 class="section-title">Kits</h2>
+      <div class="section-rule"></div>
+      <p class="section-subtitle">Choose your class. Master your build. Every kit is crafted for a different playstyle.</p>
+
+      <div class="kits-grid">
+
+        <div class="kit-card">
+          <div class="kit-card__icon" aria-hidden="true">⚔️</div>
+          <div class="kit-card__names">
+            <h3 class="kit-card__class">Knight</h3>
+            <span class="kit-card__material">Iron</span>
+          </div>
+          <p class="kit-card__desc">The frontline warrior. Heavy armor, high defense, built to hold the line and protect allies.</p>
+          <div class="kit-card__slots">
+            <div class="kit-slot"><span class="kit-slot__label">Helmet</span><span class="kit-slot__value kit-slot__value--tbd">TBD</span></div>
+            <div class="kit-slot"><span class="kit-slot__label">Chestplate</span><span class="kit-slot__value kit-slot__value--tbd">TBD</span></div>
+            <div class="kit-slot"><span class="kit-slot__label">Gauntlets</span><span class="kit-slot__value kit-slot__value--tbd">TBD</span></div>
+            <div class="kit-slot"><span class="kit-slot__label">Greaves</span><span class="kit-slot__value kit-slot__value--tbd">TBD</span></div>
+            <div class="kit-slot"><span class="kit-slot__label">Main Weapon</span><span class="kit-slot__value kit-slot__value--tbd">TBD</span></div>
+            <div class="kit-slot"><span class="kit-slot__label">Off Hand</span><span class="kit-slot__value kit-slot__value--tbd">TBD</span></div>
+          </div>
+          <div class="kit-card__abilities">
+            <span class="kit-abilities__label">Abilities</span>
+            <span class="kit-abilities__value">Coming Soon</span>
+          </div>
+        </div>
+
+        <div class="kit-card">
+          <div class="kit-card__icon" aria-hidden="true">✨</div>
+          <div class="kit-card__names">
+            <h3 class="kit-card__class">Healer</h3>
+            <span class="kit-card__material">Silk</span>
+          </div>
+          <p class="kit-card__desc">The support anchor. Light armor, powerful restoration — keep your team alive and the tide turned.</p>
+          <div class="kit-card__slots">
+            <div class="kit-slot"><span class="kit-slot__label">Helmet</span><span class="kit-slot__value kit-slot__value--tbd">TBD</span></div>
+            <div class="kit-slot"><span class="kit-slot__label">Chestplate</span><span class="kit-slot__value kit-slot__value--tbd">TBD</span></div>
+            <div class="kit-slot"><span class="kit-slot__label">Gauntlets</span><span class="kit-slot__value kit-slot__value--tbd">TBD</span></div>
+            <div class="kit-slot"><span class="kit-slot__label">Greaves</span><span class="kit-slot__value kit-slot__value--tbd">TBD</span></div>
+            <div class="kit-slot"><span class="kit-slot__label">Main Weapon</span><span class="kit-slot__value kit-slot__value--tbd">TBD</span></div>
+            <div class="kit-slot"><span class="kit-slot__label">Off Hand</span><span class="kit-slot__value kit-slot__value--tbd">TBD</span></div>
+          </div>
+          <div class="kit-card__abilities">
+            <span class="kit-abilities__label">Abilities</span>
+            <span class="kit-abilities__value">Coming Soon</span>
+          </div>
+        </div>
+
+        <div class="kit-card">
+          <div class="kit-card__icon" aria-hidden="true">🛡️</div>
+          <div class="kit-card__names">
+            <h3 class="kit-card__class">Guardian</h3>
+            <span class="kit-card__material">Adamite</span>
+          </div>
+          <p class="kit-card__desc">The immovable wall. Elite armor, shield mastery, and crowd control built for siege and defense.</p>
+          <div class="kit-card__slots">
+            <div class="kit-slot"><span class="kit-slot__label">Helmet</span><span class="kit-slot__value kit-slot__value--tbd">TBD</span></div>
+            <div class="kit-slot"><span class="kit-slot__label">Chestplate</span><span class="kit-slot__value kit-slot__value--tbd">TBD</span></div>
+            <div class="kit-slot"><span class="kit-slot__label">Gauntlets</span><span class="kit-slot__value kit-slot__value--tbd">TBD</span></div>
+            <div class="kit-slot"><span class="kit-slot__label">Greaves</span><span class="kit-slot__value kit-slot__value--tbd">TBD</span></div>
+            <div class="kit-slot"><span class="kit-slot__label">Main Weapon</span><span class="kit-slot__value kit-slot__value--tbd">TBD</span></div>
+            <div class="kit-slot"><span class="kit-slot__label">Off Hand</span><span class="kit-slot__value kit-slot__value--tbd">TBD</span></div>
+          </div>
+          <div class="kit-card__abilities">
+            <span class="kit-abilities__label">Abilities</span>
+            <span class="kit-abilities__value">Coming Soon</span>
+          </div>
+        </div>
+
+        <div class="kit-card kit-card--dark">
+          <div class="kit-card__icon" aria-hidden="true">💀</div>
+          <div class="kit-card__names">
+            <h3 class="kit-card__class">Necromancer</h3>
+            <span class="kit-card__material kit-card__material--dark">Dark Arts</span>
+          </div>
+          <p class="kit-card__desc">The void wielder. Harness dark magic, raise the fallen, and turn the battlefield into your domain.</p>
+          <div class="kit-card__slots">
+            <div class="kit-slot"><span class="kit-slot__label">Helmet</span><span class="kit-slot__value kit-slot__value--tbd">TBD</span></div>
+            <div class="kit-slot"><span class="kit-slot__label">Chestplate</span><span class="kit-slot__value kit-slot__value--tbd">TBD</span></div>
+            <div class="kit-slot"><span class="kit-slot__label">Gauntlets</span><span class="kit-slot__value kit-slot__value--tbd">TBD</span></div>
+            <div class="kit-slot"><span class="kit-slot__label">Greaves</span><span class="kit-slot__value kit-slot__value--tbd">TBD</span></div>
+            <div class="kit-slot"><span class="kit-slot__label">Main Weapon</span><span class="kit-slot__value kit-slot__value--tbd">TBD</span></div>
+            <div class="kit-slot"><span class="kit-slot__label">Off Hand</span><span class="kit-slot__value kit-slot__value--tbd">TBD</span></div>
+          </div>
+          <div class="kit-card__abilities">
+            <span class="kit-abilities__label">Abilities</span>
+            <span class="kit-abilities__value">Coming Soon</span>
+          </div>
+        </div>
+
+        <div class="kit-card kit-card--mystery">
+          <div class="kit-card__icon" aria-hidden="true">❓</div>
+          <div class="kit-card__names">
+            <h3 class="kit-card__class">???</h3>
+            <span class="kit-card__material kit-card__material--mystery">Unrevealed</span>
+          </div>
+          <p class="kit-card__desc">A fifth class lurks in the shadows. Details will be revealed when the time is right.</p>
+          <div class="kit-card__mystery-lock" aria-hidden="true">
+            <span>LOCKED</span>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="kits-note">Full kit attributes and abilities are in development. Images and stats drop when the beta opens.</p>
+    </div>
+  </section>
+
+  <!-- ===== MAP ===== -->
+  <section id="map" class="section section--map">
+    <div class="section-inner section-inner--wide">
+      <h2 class="section-title">World Map</h2>
+      <div class="section-rule"></div>
+      <p class="section-subtitle">Explore the live world of Runespire SMP — updated in real time.</p>
+      <div class="map-frame-wrapper">
+        <iframe
+          src="https://map.runespire.net/#world=smp&x=558.67&z=474.67&zoom=-3"
+          class="map-frame"
+          title="Runespire SMP World Map"
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
+      </div>
+      <p class="map-note">Live Dynmap — opens directly to the SMP world. <a href="https://map.runespire.net/" target="_blank" rel="noopener noreferrer">Open full screen</a></p>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="https://cdn.discordapp.com/icons/1477785070197674254/c478e4f0dd5d77b28ea150be5aabb9c9.webp?size=64&quality=lossless" alt="Runespire" class="footer-icon" />
+        <span class="footer-wordmark">RUNESPIRE</span>
+      </div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="index.html#about">About</a>
+        <a href="index.html#store">Store</a>
+        <a href="index.html#events">Events</a>
+        <a href="explore.html">Explore</a>
+        <a href="https://discord.gg/47PJvtFb" target="_blank" rel="noopener noreferrer">Discord</a>
+      </nav>
+      <p class="footer-legal">© 2026 Runespire &nbsp;·&nbsp; Not affiliated with Hytale or Aternum Game Studios</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
