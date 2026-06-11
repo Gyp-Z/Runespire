@@ -773,6 +773,49 @@ ul, ol { list-style: none; }
 /* ============================================================
    STORE SECTION
    ============================================================ */
+/* ============================================================
+   SHOWCASE (key art banner)
+   ============================================================ */
+.showcase {
+  position: relative;
+  min-height: 72vh;
+  background-image: url('../img/runespire-keyart.jpg');
+  background-size: cover;
+  background-position: center 30%;
+  background-attachment: fixed;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+/* Fade the artwork into the dark sections above and below */
+.showcase::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, var(--bg-section) 0%, transparent 16%, transparent 80%, var(--bg) 100%),
+    radial-gradient(ellipse at center, transparent 45%, rgba(10, 10, 15, 0.4) 100%);
+  pointer-events: none;
+}
+
+.showcase-caption {
+  position: relative;
+  z-index: 1;
+  padding: 0 24px 56px;
+  text-align: center;
+}
+
+.showcase-tagline {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(0.8rem, 2vw, 1rem);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--text);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9), 0 0 24px rgba(0, 0, 0, 0.7);
+}
+
 .section--store { background: var(--bg); }
 
 .ranks-grid {
@@ -1481,6 +1524,11 @@ ul, ol { list-style: none; }
    RESPONSIVE
    ============================================================ */
 @media (max-width: 900px) {
+  /* iOS Safari doesn't support fixed backgrounds */
+  .showcase {
+    background-attachment: scroll;
+    min-height: 48vh;
+  }
   .about-grid   { grid-template-columns: 1fr; }
   .servers-grid { grid-template-columns: 1fr; }
   .ranks-grid   { grid-template-columns: repeat(2, 1fr); }
