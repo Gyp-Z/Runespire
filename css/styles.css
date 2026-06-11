@@ -777,6 +777,7 @@ ul, ol { list-style: none; }
    SHOWCASE (key art banner)
    ============================================================ */
 .showcase {
+  --open: 0; /* 0 = cavern closed, 1 = fully revealed; driven by scroll in main.js */
   position: relative;
   min-height: 72vh;
   background-image: url('../img/runespire-keyart.jpg');
@@ -786,6 +787,57 @@ ul, ol { list-style: none; }
   display: flex;
   align-items: flex-end;
   justify-content: center;
+  overflow: hidden;
+}
+
+/* Cavern walls that part as the banner scrolls into view.
+   Closed, they must read as a continuation of the page: top edge
+   matches the About section bg, bottom edge matches the Store bg. */
+.showcase-cavern {
+  position: absolute;
+  /* pinned exactly to the section edges so the gradient endpoints
+     land precisely on the neighboring sections' background colors */
+  top: 0;
+  bottom: 0;
+  width: 66%;
+  z-index: 2;
+  pointer-events: none;
+  will-change: transform;
+  /* glow lives on the parent so it follows the child's jagged clip shape */
+  filter: drop-shadow(0 0 18px rgba(147, 51, 234, 0.45));
+}
+
+.showcase-cavern::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    var(--bg-section) 0%,
+    #110d22 22%,
+    #1c1238 45%,
+    #201443 58%,
+    #140e26 80%,
+    var(--bg) 100%
+  );
+}
+
+.showcase-cavern--left {
+  left: 0;
+  transform: translateX(calc(var(--open) * -110%));
+}
+
+.showcase-cavern--right {
+  right: 0;
+  transform: translateX(calc(var(--open) * 110%));
+}
+
+.showcase-cavern--left::before {
+  clip-path: polygon(0% 0%, 100% 0%, 88% 6%, 96% 14%, 82% 23%, 93% 31%, 84% 39%, 97% 48%, 83% 57%, 94% 65%, 85% 73%, 98% 82%, 86% 91%, 95% 100%, 0% 100%);
+}
+
+.showcase-cavern--right::before {
+  clip-path: polygon(100% 0%, 0% 0%, 12% 6%, 4% 14%, 18% 23%, 7% 31%, 16% 39%, 3% 48%, 17% 57%, 6% 65%, 15% 73%, 2% 82%, 14% 91%, 5% 100%, 100% 100%);
 }
 
 /* Fade the artwork into the dark sections above and below */
@@ -804,6 +856,12 @@ ul, ol { list-style: none; }
   z-index: 1;
   padding: 0 24px 56px;
   text-align: center;
+  opacity: var(--open);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .showcase-cavern { display: none; }
+  .showcase-caption { opacity: 1; }
 }
 
 .showcase-tagline {
