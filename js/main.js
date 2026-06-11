@@ -202,11 +202,12 @@
     const rect = showcase.getBoundingClientRect();
     const vh   = window.innerHeight;
 
-    // 0 when the section top enters the viewport bottom,
-    // 1 once it has risen ~75% of the way up the screen
-    const raw    = (vh - rect.top) / (vh * 0.75);
+    // Stays closed until the section top has risen to 85% of the
+    // viewport, then opens gradually until the top reaches 10% —
+    // so the whole reveal plays out while the banner is on screen.
+    const raw    = (vh * 0.85 - rect.top) / (vh * 0.75);
     const linear = Math.min(Math.max(raw, 0), 1);
-    const eased  = 1 - Math.pow(1 - linear, 3); // ease-out cubic
+    const eased  = linear * linear * (3 - 2 * linear); // smoothstep: gentle in and out
 
     showcase.style.setProperty('--open', eased.toFixed(4));
   }
