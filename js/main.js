@@ -113,14 +113,24 @@
     });
   }
 
-  // Active section highlight via IntersectionObserver
+  // Active section highlight + URL hash sync via IntersectionObserver
   const sections = document.querySelectorAll('section[id]');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
+      const id = entry.target.id;
       navLinks.forEach((link) => {
-        link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+        link.classList.toggle('active', link.getAttribute('href') === '#' + id);
       });
+
+      // Keep the address bar in sync with what's on screen:
+      // sections that have a nav link get their hash, the hero clears it.
+      // replaceState avoids polluting history or triggering a scroll.
+      if (document.querySelector('.nav-link[href="#' + id + '"]')) {
+        history.replaceState(null, '', '#' + id);
+      } else if (id === 'hero') {
+        history.replaceState(null, '', window.location.pathname + window.location.search);
+      }
     });
   }, { rootMargin: '-40% 0px -55% 0px' });
 
