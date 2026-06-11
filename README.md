@@ -107,9 +107,10 @@ runespire/
 
 ### View locally
 ```bash
-python -m http.server 3000
-# Open http://localhost:3000
+npx serve
+# Open the printed http://localhost:3000 URL
 ```
+> **Note:** don't open the `.html` files directly (`file://`) and don't use `python -m http.server` — the site uses clean URLs (`/explore` instead of `explore.html`), which need a server that supports them. `npx serve` reads `serve.json` and matches Vercel's behavior exactly.
 
 ### Formspree (email capture)
 1. Go to [formspree.io](https://formspree.io) — sign in with Gmail, free
