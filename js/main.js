@@ -185,6 +185,45 @@
 })();
 
 
+/* ── Showcase: cavern walls part as the banner scrolls in ──── */
+(function initCavernReveal() {
+  const showcase = document.getElementById('showcase');
+  if (!showcase) return;
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    showcase.style.setProperty('--open', '1');
+    return;
+  }
+
+  let ticking = false;
+
+  function update() {
+    ticking = false;
+    const rect = showcase.getBoundingClientRect();
+    const vh   = window.innerHeight;
+
+    // 0 when the section top enters the viewport bottom,
+    // 1 once it has risen ~75% of the way up the screen
+    const raw    = (vh - rect.top) / (vh * 0.75);
+    const linear = Math.min(Math.max(raw, 0), 1);
+    const eased  = 1 - Math.pow(1 - linear, 3); // ease-out cubic
+
+    showcase.style.setProperty('--open', eased.toFixed(4));
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  update();
+})();
+
+
 /* ── Email Signup Form ─────────────────────────────────────── */
 (function initSignupForm() {
   const form    = document.getElementById('signupForm');
