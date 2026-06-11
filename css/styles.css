@@ -1579,6 +1579,202 @@ ul, ol { list-style: none; }
 }
 
 /* ============================================================
+   SITE LIFE — scroll reveals, ambient glow, hover polish
+   ============================================================ */
+
+/* --- Scroll reveal (classes applied by main.js) ---
+   Uses the independent translate/scale properties so existing
+   transform-based hover lifts on cards keep working. */
+.reveal {
+  opacity: 0;
+  translate: 0 28px;
+  transition:
+    opacity 0.7s ease,
+    translate 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0s);
+}
+
+.reveal.in-view {
+  opacity: 1;
+  translate: 0 0;
+}
+
+/* Section rules sweep open from the center instead of sliding up */
+.section-rule.reveal {
+  translate: 0 0;
+  scale: 0 1;
+  transition:
+    opacity 0.6s ease,
+    scale 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0s);
+}
+
+.section-rule.reveal.in-view { scale: 1 1; }
+
+/* Preserve intentionally-dimmed cards after they reveal */
+.event-card--tbd.reveal.in-view   { opacity: 0.7; }
+.kit-card--mystery.reveal.in-view { opacity: 0.5; }
+
+/* --- Ambient color orbs drifting behind every section --- */
+.section { overflow: hidden; }
+
+.section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 480px 360px at 12% 18%, rgba(107, 33, 168, 0.12), transparent 70%),
+    radial-gradient(ellipse 520px 400px at 88% 78%, rgba(201, 168, 76, 0.07), transparent 70%);
+  animation: orbDrift 16s ease-in-out infinite alternate;
+}
+
+@keyframes orbDrift {
+  from { transform: translate3d(-2%, -1%, 0) scale(1);    opacity: 0.75; }
+  to   { transform: translate3d(2%, 2%, 0)   scale(1.08); opacity: 1; }
+}
+
+/* --- Hover life on cards --- */
+.about-card,
+.event-card {
+  transition: background 0.25s, border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+
+.about-card:hover,
+.event-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35), 0 0 24px var(--gold-glow);
+}
+
+/* Icons pop when their card is hovered */
+.about-card__icon,
+.kit-card__icon {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.about-card:hover .about-card__icon,
+.kit-card:hover .kit-card__icon {
+  transform: scale(1.18) rotate(-5deg);
+}
+
+/* --- Rank tiers glow in their own color --- */
+.rank-card {
+  transition: background 0.25s, border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+
+.rank-badge--explorer     { box-shadow: 0 0 14px rgba(126, 200, 227, 0.15); }
+.rank-badge--explorerplus { box-shadow: 0 0 14px rgba(168, 216, 168, 0.15); }
+.rank-badge--vanguard     { box-shadow: 0 0 14px rgba(244, 162, 97, 0.15); }
+.rank-badge--sentinel     { box-shadow: 0 0 14px rgba(231, 111, 81, 0.15); }
+.rank-badge--luminary     { box-shadow: 0 0 14px rgba(147, 51, 234, 0.2); }
+.rank-badge--ascendant    { box-shadow: 0 0 14px rgba(201, 168, 76, 0.2); }
+
+.rank-card:has(.rank-badge--explorer):hover     { border-color: rgba(126, 200, 227, 0.45); box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3), 0 0 24px rgba(126, 200, 227, 0.14); }
+.rank-card:has(.rank-badge--explorerplus):hover { border-color: rgba(168, 216, 168, 0.45); box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3), 0 0 24px rgba(168, 216, 168, 0.14); }
+.rank-card:has(.rank-badge--vanguard):hover     { border-color: rgba(244, 162, 97, 0.45);  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3), 0 0 24px rgba(244, 162, 97, 0.14); }
+.rank-card:has(.rank-badge--sentinel):hover     { border-color: rgba(231, 111, 81, 0.45);  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3), 0 0 24px rgba(231, 111, 81, 0.14); }
+.rank-card:has(.rank-badge--luminary):hover     { border-color: rgba(147, 51, 234, 0.5);   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3), 0 0 24px rgba(147, 51, 234, 0.18); }
+
+/* ELITE badge breathes */
+.rank-card__badge-featured {
+  animation: elitePulse 2.4s ease-in-out infinite;
+}
+
+@keyframes elitePulse {
+  0%, 100% { box-shadow: 0 0 6px rgba(201, 168, 76, 0.35); }
+  50%      { box-shadow: 0 0 16px rgba(201, 168, 76, 0.7); }
+}
+
+/* Active roadmap marker pulses */
+.roadmap-item--active .roadmap-marker {
+  animation: markerPulse 2s ease-in-out infinite;
+}
+
+@keyframes markerPulse {
+  0%, 100% { box-shadow: 0 0 8px var(--gold-glow); }
+  50%      { box-shadow: 0 0 18px rgba(201, 168, 76, 0.55); }
+}
+
+/* --- Light sweep across primary buttons on hover --- */
+.btn-primary,
+.btn-discord {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::after,
+.btn-discord::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -75%;
+  width: 50%;
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.14), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.55s ease;
+  pointer-events: none;
+}
+
+.btn-primary:hover::after,
+.btn-discord:hover::after { left: 125%; }
+
+/* --- Map coming soon --- */
+.map-frame-wrapper--soon { border-style: dashed; }
+
+.map-soon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  text-align: center;
+  padding: 24px;
+  background:
+    radial-gradient(ellipse at center, rgba(107, 33, 168, 0.14), transparent 70%),
+    var(--bg-card);
+}
+
+.map-soon__icon { font-size: 2.4rem; }
+
+.map-soon__badge {
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--gold-border);
+  padding: 7px 16px;
+  border-radius: 999px;
+  animation: calloutGlow 2.6s ease-in-out infinite;
+}
+
+.map-soon__text {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  max-width: 420px;
+  line-height: 1.7;
+}
+
+/* --- Respect reduced-motion preferences --- */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    translate: none;
+    scale: none;
+    transition: none;
+  }
+  .section::before,
+  .rank-card__badge-featured,
+  .roadmap-item--active .roadmap-marker,
+  .map-soon__badge { animation: none; }
+}
+
+/* ============================================================
    RESPONSIVE
    ============================================================ */
 @media (max-width: 900px) {

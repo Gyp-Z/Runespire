@@ -225,6 +225,42 @@
 })();
 
 
+/* ── Scroll reveal: content fades in as it enters the view ─── */
+(function initScrollReveal() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const selectors = [
+    '.section-title', '.section-rule', '.section-subtitle',
+    '.about-grid > *', '.ranks-grid > *', '.events-grid > *',
+    '.servers-grid > *', '.kits-grid > *', '.roadmap-item',
+    '.store-note', '.kits-note', '.map-frame-wrapper', '.map-note',
+  ];
+  const els = document.querySelectorAll(selectors.join(','));
+  if (!els.length) return;
+
+  els.forEach((el) => {
+    el.classList.add('reveal');
+    // Stagger siblings inside the same grid/timeline
+    const parent = el.parentElement;
+    if (parent && /grid|timeline/.test(parent.className)) {
+      const index = Array.prototype.indexOf.call(parent.children, el);
+      el.style.setProperty('--reveal-delay', (index * 0.08).toFixed(2) + 's');
+    }
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  els.forEach((el) => observer.observe(el));
+})();
+
+
 /* ── Email Signup Form ─────────────────────────────────────── */
 (function initSignupForm() {
   const form    = document.getElementById('signupForm');
