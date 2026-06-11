@@ -113,6 +113,16 @@
     });
   }
 
+  // Logo click: smooth-scroll to the top without putting #hero in the URL
+  const logo = document.querySelector('.nav-logo[href="#hero"]');
+  if (logo) {
+    logo.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+    });
+  }
+
   // Active section highlight + URL hash sync via IntersectionObserver
   const sections = document.querySelectorAll('section[id]');
   const observer = new IntersectionObserver((entries) => {
