@@ -1230,6 +1230,35 @@ ul, ol { list-style: none; }
 
 .event-card--tbd { opacity: 0.7; }
 
+/* Featured launch event — spans the full top row, gold treatment */
+.event-card--featured {
+  grid-column: 1 / -1;
+  border-color: var(--gold);
+  background: rgba(201, 168, 76, 0.05);
+  box-shadow: 0 0 30px rgba(201, 168, 76, 0.1);
+}
+
+.event-card--featured:hover {
+  border-color: var(--gold-light);
+}
+
+.event-card--featured .event-card__title {
+  font-size: 1.2rem;
+  color: var(--gold-light);
+}
+
+.event-card__label--live {
+  color: var(--gold);
+  border-color: var(--gold);
+  animation: elitePulse 2.4s ease-in-out infinite;
+}
+
+.event-card__status--gold {
+  color: var(--gold);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
 .event-card__label {
   font-family: var(--font-heading);
   font-size: 0.55rem;
@@ -1807,6 +1836,7 @@ ul, ol { list-style: none; }
   }
   .section::before,
   .rank-card__badge-featured,
+  .event-card__label--live,
   .roadmap-item--active .roadmap-marker,
   .map-soon__badge { animation: none; }
 }
