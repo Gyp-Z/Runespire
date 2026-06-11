@@ -51,6 +51,8 @@ Most recent updates (per MAC's requests):
 - **Explore map swapped** — the old reference/"World Map" section was removed and replaced with a dedicated **SMP Map** section pointing at `map.runespire.net` (placeholder until DNS is live).
 - **Local-dev fix** — added `serve.json` (`cleanUrls: true`); `npx serve` now mirrors Vercel's clean URLs locally (opening files via `file://` was 404-ing on the `/explore` link).
 - **Hardcore SMP Launch added to Events** — featured gold card at the top of the Events grid (full-width row, pulsing "Launching" chip, status "Saturday · 12:00 PM EST"), above the three Coming Soon cards. Remember to update/retire it alongside the hero banner post-launch.
+- **Rank colors synced to in-game chat colors** (per Darth/MAC's friend): Traveler #6BCB77, Explorer #3DD9D6, Guardian #4D7CFE, Overlord #D94A4A, Celestial #F5C451, RuneKeeper gradient #9D4EDD→#FF51D1 (gradient text + matching card accents).
+- **"Buy a Life" store placeholder** (MAC request) — crimson banner-card below the rank grid: buy your life back to skip the death ban. Shows "Available on Store Launch"; wire up via Tebex alongside the ranks.
 
 Earlier this cycle (already live): Hardcore SMP hero banner + 💀 about card (24-hour death ban explainer), the key art showcase with the scroll-driven purple cavern reveal, a full site-wide animation/polish pass, clean URLs (`/explore`, bare `/`), and scroll-synced section hashes (`/#about`, `/#store`, `/#events`) that clear at the top.
 
