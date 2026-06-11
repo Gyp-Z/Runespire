@@ -273,19 +273,44 @@ ul, ol { list-style: none; }
 
 /* Launch announcement callout */
 .launch-callout {
+  position: relative;
   display: inline-flex;
   align-items: center;
   flex-wrap: wrap;
   justify-content: center;
   gap: 12px;
   margin-top: 4px;
-  padding: 12px 24px;
+  padding: 11px 22px;
   border: 1px solid var(--gold-border);
   border-radius: 999px;
   background: linear-gradient(135deg, rgba(201, 168, 76, 0.08), rgba(107, 33, 168, 0.14));
+  overflow: hidden;
+  cursor: pointer;
   animation: revealUp 0.5s ease forwards 1.9s, calloutGlow 2.6s ease-in-out infinite 2.4s;
   opacity: 0;
   transform: translateY(16px);
+  /* scale is a separate property so hover works despite the animation's fill-mode owning transform */
+  scale: 1;
+  transition: border-color 0.25s ease, scale 0.25s ease;
+}
+
+.launch-callout:hover {
+  border-color: rgba(201, 168, 76, 0.55);
+  scale: 1.04;
+}
+
+/* Gold sheen sweeping across the pill */
+.launch-callout::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -60%;
+  width: 40%;
+  background: linear-gradient(105deg, transparent, rgba(232, 201, 106, 0.18), transparent);
+  transform: skewX(-20deg);
+  animation: calloutSheen 4.5s ease-in-out infinite 3s;
+  pointer-events: none;
 }
 
 .launch-callout__pulse {
@@ -322,6 +347,23 @@ ul, ol { list-style: none; }
   color: var(--gold-light);
 }
 
+/* Chevron hint — same construction as the scroll indicator arrow */
+.launch-callout__arrow {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  margin-top: -4px;
+  border-right: 2px solid var(--gold-dim);
+  border-bottom: 2px solid var(--gold-dim);
+  transform: rotate(45deg);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.launch-callout:hover .launch-callout__arrow {
+  border-color: var(--gold-light);
+  transform: rotate(45deg) translate(3px, 3px);
+}
+
 @keyframes pulseDot {
   0%   { box-shadow: 0 0 0 0 rgba(232, 201, 106, 0.55); }
   70%  { box-shadow: 0 0 0 10px rgba(232, 201, 106, 0); }
@@ -331,6 +373,11 @@ ul, ol { list-style: none; }
 @keyframes calloutGlow {
   0%, 100% { box-shadow: 0 0 16px var(--gold-glow); }
   50%      { box-shadow: 0 0 32px rgba(201, 168, 76, 0.3); }
+}
+
+@keyframes calloutSheen {
+  0%        { left: -60%; }
+  45%, 100% { left: 120%; }
 }
 
 /* Scroll indicator */
@@ -559,6 +606,23 @@ ul, ol { list-style: none; }
 .about-card:hover {
   background: var(--bg-card-hover);
   border-color: var(--gold-dim);
+}
+
+/* Flash highlight when navigated to from the launch callout */
+.about-card--highlight {
+  animation: cardHighlight 2.2s ease 0.4s;
+}
+
+@keyframes cardHighlight {
+  0%, 100% {
+    border-color: var(--border);
+    box-shadow: none;
+  }
+  18%, 65% {
+    border-color: var(--gold);
+    background: rgba(201, 168, 76, 0.06);
+    box-shadow: 0 0 32px rgba(201, 168, 76, 0.35), inset 0 0 24px rgba(201, 168, 76, 0.06);
+  }
 }
 
 .about-card__icon { font-size: 2rem; margin-bottom: 16px; }

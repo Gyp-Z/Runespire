@@ -164,6 +164,27 @@
 })();
 
 
+/* ── Launch callout → scroll to Hardcore SMP card ──────────── */
+(function initLaunchCallout() {
+  const callout = document.getElementById('launchCallout');
+  const card    = document.getElementById('hardcore-smp');
+  if (!callout || !card) return;
+
+  callout.addEventListener('click', (e) => {
+    e.preventDefault();
+    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    // Restart the highlight animation if it's already running
+    card.classList.remove('about-card--highlight');
+    void card.offsetWidth;
+    card.classList.add('about-card--highlight');
+    card.addEventListener('animationend', () => {
+      card.classList.remove('about-card--highlight');
+    }, { once: true });
+  });
+})();
+
+
 /* ── Email Signup Form ─────────────────────────────────────── */
 (function initSignupForm() {
   const form    = document.getElementById('signupForm');
