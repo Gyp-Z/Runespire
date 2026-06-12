@@ -156,7 +156,9 @@ vercel --prod
 8. **Favicon** added (self-hosted crest, both pages) + `serve.json` for local clean-URL preview (`npx serve`).
 9. **Seamless hardcore atmosphere (final pass)** — callout reverted from solid red to **gold with a red shine sweep** + gold→red breathing glow (red intent, gold palette). The `#hardcore` section's hard crimson block was replaced with an **edge-blended, heartbeat-animated red/purple atmosphere** whose intensity is **scroll-driven** (`--heat` var via `initHardcoreHeat`), so scrolling from hero → countdown → About reads as one continuous heat swell rather than discrete colored blocks. The **Hardcore nav pill remains red** (intentional wayfinding marker).
 
-**Still pending:** Tebex (ranks + Buy a Life purchasable); Discord invite mismatch (`2XmKXSfn` nav/hero vs `47PJvtFb` elsewhere); MAC's YouTube URL; post-launch manual cleanup (hero callout text + Events launch card after Saturday).
+**Still pending:** Tebex (ranks + Buy a Life purchasable); MAC's YouTube URL; post-launch manual cleanup (hero callout text + Events launch card after Saturday).
+
+> Resolved 2026-06-12: all Discord links unified to the permanent invite `discord.gg/ms5waSEK2G` (replaced both the expired `2XmKXSfn` and `47PJvtFb` across `index.html` + `explore.html`).
 
 ### What changed most recently (MAC's Discord requests)
 
