@@ -31,13 +31,15 @@
 ## What's Built (Phase 2)
 
 - **Hero** — animated crest, particle canvas, glowing title, server IP copy-badge, View Ranks + Discord CTAs.
-- **Hardcore SMP launch banner (hero)** — a pill-shaped launch callout below the hero CTAs announcing **"Hardcore SMP — Launching Saturday at 12:00 PM EST"**. Pulsing status dot, periodic gold sheen sweep, hover lift, and a chevron hint. Clicking it smooth-scrolls to the Hardcore SMP about card and flashes it gold. Styled to match the hero's outlined-gold / Cinzel design language.
+- **Hardcore SMP launch banner (hero)** — a pill-shaped launch callout below the hero CTAs announcing **"Hardcore SMP — Launching Saturday at 12:00 PM EST"**, styled **red** (warning language matching the #hardcore section). Pulsing red dot, sheen sweep, hover lift, chevron. Clicking it smooth-scrolls to the **countdown section**.
+- **Hardcore countdown section (`#hardcore`)** — first section under the hero. Crimson war-drum theme, live countdown (DAYS/HOURS/MINUTES/SECONDS) to **2026-06-14 12:00 PM EST**, animated progress bar (June 1 → launch), pulsing seconds block, "THE LAST SERVER STANDING" teaser card with skull watermark and a red Discord button. At zero, `js/launch-event.js` switches the site to launched mode (see Jarvis Sync).
 - **About section** — four cards: *The Server*, *Connect* (IP badge + Discord + YouTube-soon), *Reference Worlds*, and **Hardcore SMP**.
 - **Hardcore SMP about card** — 💀 card (id `#hardcore-smp`) explaining the mode: *"No second chances. Runespire's Hardcore SMP features a 24-hour death ban — if you die, you're out for a full day. Ranks are available but won't save you. Skill is the only currency that matters."* The about grid was changed from 3 to 4 columns (2×2) so the new card balances.
 - **Key art showcase** — full-bleed banner between About and Store using `img/runespire-keyart.jpg`, with a scroll-driven "purple cavern opening" reveal whose wall gradients blend into the neighboring section backgrounds.
 - **Store / Ranks** — seven rank tiers, lowest → highest: **Default** (free baseline — dashed card, "Free", no buy button, "Everyone starts here"), **Traveler**, **Explorer**, **Guardian**, **Overlord**, **Celestial**, and **RuneKeeper** (top tier — gold "LEGENDARY" featured card with pulsing badge). Each tier lists: a custom in-game tag (all paid tiers), a **deathban** time that shrinks with rank (Default 24h → Traveler 21h → Explorer 18h → Guardian 15h → Overlord 12h → Celestial 9h → RuneKeeper 6h), **homes** (1/2/3/4/5/7/10), and **market slots** (3/4/5/7/9/12/15). No prices shown — paid tiers read **"Available on Store Launch"** pending Tebex. Grid renders 3-3-1 with RuneKeeper centered on desktop, collapses responsively (2-wide tablet, stacked mobile). Each tier badge has its own accent color + hover glow.
 - **Events** — a featured, gold-highlighted **Hardcore SMP Launch** card (full-width top row, pulsing "Launching" chip, "Saturday · 12:00 PM EST") above three Coming Soon event cards.
-- **Explore page** (`explore.html`) — The Hub (3 servers), Roadmap timeline, 5 kit cards, and an **SMP Map** section (`#smp-map`). The previous reference/"World Map" section was removed; the SMP Map shows an **"SMP Map — Coming Soon"** placeholder with a `map.runespire.net` iframe staged in a comment, ready to enable once DNS is live.
+- **One-page site** — the Explore page's content was merged into the homepage: **The Hub** (`#servers`: SMP / Kitmap / MMO cards — "Factions" renamed to "SMP" per Darth), **Roadmap** (`#roadmap`), and the **SMP Map** (`#map`). The **Kits section was removed** per Darth (markup survives in the unlinked `explore.html`). Nav/footer use section anchors; `explore.html` still exists but is unlinked.
+- **Live SMP map** (`#map`) — embeds `https://map.runespire.net` (DNS + Caddy reverse proxy on the game VM, set up by Darth). MMORPG-style presentation: gold corner-bracket frame, LIVE status toolbar with pulsing dot, "Open Full Map ↗" button, edge vignette, one-shot gold scan sweep on scroll-in.
 - **Site-wide polish** — scroll-reveal fade-ins with staggered cards, ambient drifting color orbs per section, icon pop on card hover, light-sweep on buttons, all gated behind `prefers-reduced-motion`.
 
 ---
@@ -60,21 +62,18 @@ Earlier this cycle (already live): Hardcore SMP hero banner + 💀 about card (2
 
 ## Priority Action Items (with MAC)
 
-The real near-term Phase 2 work is unblocking two integrations that both depend on MAC:
-
-1. **Tebex setup** — get the store configured **with MAC** so the seven rank tiers (Default → RuneKeeper) can actually be purchased. Paid tiers currently show "Available on Store Launch"; Tebex is the standard processor for Hytale/Minecraft servers and handles payments + instant rank delivery.
-2. **SMP map (GoDaddy)** — ask MAC for the **GoDaddy login** so the `map.runespire.net` subdomain / DNS can be set up properly and the live SMP map can be wired into the Explore page's SMP Map section (currently a "Coming Soon" placeholder with the iframe commented out). `map.runespire.net` does not resolve yet.
+1. **Tebex setup** — get the store configured **with MAC** so the seven rank tiers (Default → RuneKeeper) and the **Buy a Life** item can actually be purchased. Paid tiers currently show "Available on Store Launch"; Tebex is the standard processor for Hytale/Minecraft servers and handles payments + instant rank delivery.
+2. ~~SMP map (GoDaddy)~~ — **RESOLVED 2026-06-12**: Darth added the `map` A record and ran Caddy on the game VM; `https://map.runespire.net` is live and embedded on the homepage.
 
 ---
 
 ## Open Questions / Deploy Notes
 
-- **Banner lifecycle** — decide whether the hero launch banner is removed (or changed to "Live now / Join") **after** the Saturday 12:00 PM EST launch, so it doesn't sit stale.
-- **Discord link mismatch** — the hero CTA links to `discord.gg/2XmKXSfn` while the About/footer links use `discord.gg/47PJvtFb`. Confirm which invite is canonical and unify.
-- **SMP map / DNS** — the Explore page's SMP Map section is a "Coming Soon" placeholder; the `map.runespire.net` iframe is commented out in `explore.html`, blocked on GoDaddy DNS setup (needs MAC). The staged iframe uses `http://` — switch to `https://` before enabling (browsers block mixed-content iframes), and add a `frame-src` entry to the `vercel.json` CSP or the embed will be refused.
+- **Post-launch cleanup (after Sat 12:00 PM EST)** — the countdown section flips itself to "THE HARDCORE SMP IS LIVE" automatically, but the **hero callout** and the **Events launch card** still say "Launching Saturday…" and need a manual update/retire once live.
+- **Discord link mismatch** — the hero CTA + nav link to `discord.gg/2XmKXSfn` while the About/footer/hardcore-card links use `discord.gg/47PJvtFb`. Confirm which invite is canonical and unify.
 - **MAC's YouTube** — the Connect card's YouTube link is still a `#` placeholder pending MAC's channel URL (see comment in `index.html`).
 
-> Resolved this session: launch timezone (now shown as Saturday 12:00 PM EST); local dev clean-URL 404 (added `serve.json`).
+> Resolved: launch timezone (Saturday 12:00 PM EST shown); local dev clean-URL 404 (`serve.json`); SMP map DNS/HTTPS (Darth, 2026-06-12 — live at `https://map.runespire.net` and embedded on the homepage).
 
 ---
 
@@ -143,7 +142,20 @@ vercel --prod
 
 ## Jarvis Sync
 
-> Status briefing for **Jarvis** (Zach's AI assistant). Last updated **2026-06-11**. All work ships via the `dev` → `main` → Vercel auto-deploy flow; pushing `main` triggers production.
+> Status briefing for **Jarvis** (Zach's AI assistant). Last updated **2026-06-12**. All work ships via the `dev` → `main` → Vercel auto-deploy flow; pushing `main` triggers production.
+
+### Update — 2026-06-12 (launch eve)
+
+1. **Site is now one page.** Explore content merged into the homepage (`#servers` The Hub, `#roadmap`, `#map`); nav/footer use anchors; `explore.html` exists but is unlinked. **Kits section removed** and **Factions renamed to SMP** (Darth's requests).
+2. **SMP map is LIVE** — Darth added GoDaddy DNS (`map` → `66.45.235.138`) and a Caddy reverse proxy with auto-TLS on the game VM. Homepage embeds `https://map.runespire.net` in an MMORPG-style frame (gold corner brackets, LIVE toolbar, scan-sweep reveal). CSP `frame-src` allows it.
+3. **Hardcore SMP countdown + launch event system** (`#hardcore` section + `js/launch-event.js`) — crimson section under the hero counting down to **2026-06-14T12:00:00-04:00**. At zero (page open): timer swaps to a pulsing "⚔ THE HARDCORE SMP IS LIVE — JOIN NOW ⚔" banner, one-time rune flash, fire/ember canvas overlay ramps in, `body.launched` warms the palette and reddens nav/title glow, ambient particles gain fire tones. State persists in `localStorage('runespire_launched')`; post-launch visitors get everything except the rune flash. Reduced-motion users get the banner/palette only.
+4. **Rank colors synced to in-game chat colors** (from Darth): Traveler #6BCB77, Explorer #3DD9D6, Guardian #4D7CFE, Overlord #D94A4A, Celestial #F5C451, RuneKeeper #9D4EDD→#FF51D1 gradient (gradient text + matching featured-card accents).
+5. **"Buy a Life" store placeholder** (MAC) — crimson banner-card under the rank grid; needs Tebex wiring.
+6. **Hero launch callout** restyled **red** and retargeted to scroll to `#hardcore`; the red **Hardcore nav pill is now first** in nav and footer.
+7. **Mobile pass** — hamburger menu breakpoint moved 640→900px (8 nav links overflowed inline on tablets), countdown becomes an even 2×2 grid with resized numerals on phones, tighter map frame, smaller corner brackets.
+8. **Favicon** added (self-hosted crest, both pages) + `serve.json` for local clean-URL preview (`npx serve`).
+
+**Still pending:** Tebex (ranks + Buy a Life purchasable); Discord invite mismatch (`2XmKXSfn` nav/hero vs `47PJvtFb` elsewhere); MAC's YouTube URL; post-launch manual cleanup (hero callout text + Events launch card after Saturday).
 
 ### What changed most recently (MAC's Discord requests)
 

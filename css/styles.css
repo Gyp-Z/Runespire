@@ -281,13 +281,13 @@ ul, ol { list-style: none; }
   gap: 12px;
   margin-top: 4px;
   padding: 11px 22px;
-  border: 1px solid var(--gold-border);
+  border: 1px solid rgba(220, 38, 38, 0.4);
   border-radius: 999px;
-  /* same fill as the IP badge above it, so the hero reads as one set */
-  background: rgba(201, 168, 76, 0.05);
+  /* hardcore-red so it reads as a warning, matching the #hardcore section */
+  background: rgba(220, 38, 38, 0.06);
   overflow: hidden;
   cursor: pointer;
-  animation: revealUp 0.5s ease forwards 1.9s, calloutGlow 2.6s ease-in-out infinite 2.4s;
+  animation: revealUp 0.5s ease forwards 1.9s, calloutGlowRed 2.6s ease-in-out infinite 2.4s;
   opacity: 0;
   transform: translateY(16px);
   /* scale is a separate property so hover works despite the animation's fill-mode owning transform */
@@ -296,7 +296,7 @@ ul, ol { list-style: none; }
 }
 
 .launch-callout:hover {
-  border-color: rgba(201, 168, 76, 0.55);
+  border-color: rgba(220, 38, 38, 0.7);
   scale: 1.04;
 }
 
@@ -308,7 +308,7 @@ ul, ol { list-style: none; }
   bottom: 0;
   left: -60%;
   width: 40%;
-  background: linear-gradient(105deg, transparent, rgba(232, 201, 106, 0.12), transparent);
+  background: linear-gradient(105deg, transparent, rgba(255, 110, 90, 0.13), transparent);
   transform: skewX(-20deg);
   animation: calloutSheen 4.5s ease-in-out infinite 3s;
   pointer-events: none;
@@ -319,8 +319,8 @@ ul, ol { list-style: none; }
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: var(--gold-light);
-  animation: pulseDot 1.8s ease-out infinite;
+  background: #ff5a5a;
+  animation: pulseDotRed 1.8s ease-out infinite;
 }
 
 .launch-callout__badge {
@@ -329,10 +329,10 @@ ul, ol { list-style: none; }
   font-size: 0.7rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  /* outlined gold chip, same language as the rank badges and buttons */
-  color: var(--gold);
-  background: rgba(201, 168, 76, 0.12);
-  border: 1px solid var(--gold-border);
+  /* outlined red chip, matching the hardcore nav pill */
+  color: #ff6b6b;
+  background: rgba(220, 38, 38, 0.12);
+  border: 1px solid rgba(220, 38, 38, 0.35);
   padding: 4px 10px;
   border-radius: 4px;
   white-space: nowrap;
@@ -350,7 +350,7 @@ ul, ol { list-style: none; }
 
 .launch-callout__text strong {
   font-weight: 600;
-  color: var(--gold);
+  color: #ff6b6b;
 }
 
 /* Chevron hint — same construction as the scroll indicator arrow */
@@ -359,14 +359,14 @@ ul, ol { list-style: none; }
   width: 8px;
   height: 8px;
   margin-top: -4px;
-  border-right: 2px solid var(--gold-dim);
-  border-bottom: 2px solid var(--gold-dim);
+  border-right: 2px solid rgba(220, 38, 38, 0.6);
+  border-bottom: 2px solid rgba(220, 38, 38, 0.6);
   transform: rotate(45deg);
   transition: transform 0.25s ease, border-color 0.25s ease;
 }
 
 .launch-callout:hover .launch-callout__arrow {
-  border-color: var(--gold-light);
+  border-color: #ff6b6b;
   transform: rotate(45deg) translate(3px, 3px);
 }
 
@@ -379,6 +379,17 @@ ul, ol { list-style: none; }
 @keyframes calloutGlow {
   0%, 100% { box-shadow: 0 0 12px var(--gold-glow); }
   50%      { box-shadow: 0 0 24px rgba(201, 168, 76, 0.22); }
+}
+
+@keyframes calloutGlowRed {
+  0%, 100% { box-shadow: 0 0 12px rgba(220, 38, 38, 0.15); }
+  50%      { box-shadow: 0 0 24px rgba(220, 38, 38, 0.3); }
+}
+
+@keyframes pulseDotRed {
+  0%   { box-shadow: 0 0 0 0 rgba(255, 90, 90, 0.55); }
+  70%  { box-shadow: 0 0 0 10px rgba(255, 90, 90, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 90, 90, 0); }
 }
 
 @keyframes calloutSheen {
@@ -2347,11 +2358,9 @@ body.launched .title {
   .ranks-grid > .rank-card:nth-child(7) { grid-column: 1 / -1; }
   .events-grid  { grid-template-columns: 1fr; }
   .kits-grid    { grid-template-columns: repeat(2, 1fr); }
-}
 
-@media (max-width: 640px) {
-  :root { --section-pad: 64px; }
-
+  /* 8 nav links don't fit inline below ~900px — switch to the
+     hamburger menu here instead of at the phone breakpoint */
   .nav-links {
     display: none;
     position: absolute;
@@ -2368,6 +2377,10 @@ body.launched .title {
   .nav-links.open  { display: flex; }
   .nav-toggle      { display: flex; }
   .nav-link        { width: 100%; padding: 10px 16px; }
+}
+
+@media (max-width: 640px) {
+  :root { --section-pad: 64px; }
 
   .ranks-grid { grid-template-columns: 1fr; }
   .kits-grid  { grid-template-columns: 1fr; }
@@ -2377,6 +2390,22 @@ body.launched .title {
   .hero-ctas .btn-discord { width: 100%; justify-content: center; }
 
   .life-item { flex-direction: column; text-align: center; }
+
+  /* Countdown: even 2×2 grid, numerals sized to fit half-width blocks */
+  .countdown { gap: 10px; }
+  .countdown-block {
+    min-width: 0;
+    flex: 1 1 calc(50% - 5px);
+    padding: 20px 10px 16px;
+  }
+  .countdown-num { font-size: clamp(2.4rem, 13vw, 3.5rem); }
+
+  /* Tighter map frame on phones */
+  .map-shell { padding: 10px; }
+  .map-corner { width: 20px; height: 20px; }
+
+  /* Launch callout: stack contents so the pill never overflows */
+  .launch-callout { max-width: 100%; }
 }
 
 @media (max-width: 480px) {
