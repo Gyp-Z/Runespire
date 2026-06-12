@@ -253,7 +253,7 @@
     '.section-title', '.section-rule', '.section-subtitle',
     '.about-grid > *', '.ranks-grid > *', '.events-grid > *',
     '.servers-grid > *', '.kits-grid > *', '.roadmap-item',
-    '.life-item', '.store-note', '.kits-note', '.map-frame-wrapper', '.map-note',
+    '.life-item', '.store-note', '.kits-note', '.map-shell', '.map-note',
   ];
   const els = document.querySelectorAll(selectors.join(','));
   if (!els.length) return;
