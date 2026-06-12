@@ -1617,6 +1617,16 @@ ul, ol { list-style: none; }
   display: block;
 }
 
+/* Fixed-height variant for the homepage embed */
+.map-frame-wrapper--fixed {
+  padding-top: 0;
+  height: 650px;
+}
+
+@media (max-width: 640px) {
+  .map-frame-wrapper--fixed { height: 420px; }
+}
+
 .map-note {
   margin-top: 12px;
   font-size: 0.8rem;
