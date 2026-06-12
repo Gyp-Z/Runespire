@@ -245,6 +245,45 @@
 })();
 
 
+/* ── Hardcore section: red heat swells as it fills the view ── */
+(function initHardcoreHeat() {
+  const section = document.getElementById('hardcore');
+  if (!section) return;
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    section.style.setProperty('--heat', '1');
+    return;
+  }
+
+  let ticking = false;
+
+  function update() {
+    ticking = false;
+    const rect = section.getBoundingClientRect();
+    const vh   = window.innerHeight;
+
+    // How much of the viewport the section currently occupies:
+    // simmers at 0.25 off-screen, full blaze when it dominates.
+    const visible = Math.min(rect.bottom, vh) - Math.max(rect.top, 0);
+    const linear  = Math.min(Math.max(visible / Math.min(rect.height, vh), 0), 1);
+    const eased   = linear * linear * (3 - 2 * linear);
+
+    section.style.setProperty('--heat', (0.25 + 0.75 * eased).toFixed(3));
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  update();
+})();
+
+
 /* ── Scroll reveal: content fades in as it enters the view ─── */
 (function initScrollReveal() {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
