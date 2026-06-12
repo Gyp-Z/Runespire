@@ -36,6 +36,7 @@
         <li><a href="#servers" class="nav-link">Servers</a></li>
         <li><a href="#roadmap" class="nav-link">Roadmap</a></li>
         <li><a href="#map" class="nav-link">Map</a></li>
+        <li><a href="#hardcore" class="nav-link nav-link--hardcore">Hardcore</a></li>
         <li><a href="https://discord.gg/2XmKXSfn" class="nav-link nav-link--discord" target="_blank" rel="noopener noreferrer">Discord</a></li>
       </ul>
     </div>
@@ -88,6 +89,46 @@
     <a href="#about" class="scroll-indicator" aria-label="Scroll down">
       <span class="scroll-arrow"></span>
     </a>
+  </section>
+
+  <!-- ===== HARDCORE SMP COUNTDOWN ===== -->
+  <section id="hardcore" class="section section--hardcore">
+    <div class="hardcore-progress" aria-hidden="true">
+      <div class="hardcore-progress__fill" id="hardcoreProgress"></div>
+    </div>
+    <div class="section-inner">
+      <h2 class="section-title section-title--hardcore">Hardcore SMP</h2>
+      <div class="section-rule section-rule--red"></div>
+      <p class="hardcore-tagline">One Life. No Respawns. Are You Ready?</p>
+
+      <div class="countdown" id="countdown">
+        <div class="countdown-block">
+          <span class="countdown-num" id="cdDays">--</span>
+          <span class="countdown-label">Days</span>
+        </div>
+        <div class="countdown-block">
+          <span class="countdown-num" id="cdHours">--</span>
+          <span class="countdown-label">Hours</span>
+        </div>
+        <div class="countdown-block">
+          <span class="countdown-num" id="cdMinutes">--</span>
+          <span class="countdown-label">Minutes</span>
+        </div>
+        <div class="countdown-block countdown-block--seconds">
+          <span class="countdown-num" id="cdSeconds">--</span>
+          <span class="countdown-label">Seconds</span>
+        </div>
+      </div>
+
+      <p class="countdown-live" id="countdownLive" role="status" hidden>⚔ THE HARDCORE SMP IS LIVE — JOIN NOW ⚔</p>
+
+      <div class="hardcore-card">
+        <div class="hardcore-card__icon" aria-hidden="true">💀</div>
+        <h3 class="hardcore-card__title">The Last Server Standing</h3>
+        <p class="hardcore-card__text">Permadeath is real. Every fight matters. Every decision is permanent. The Hardcore SMP season launches on Runespire — only the strongest survive. Will you be one of them?</p>
+        <a href="https://discord.gg/47PJvtFb" class="btn-hardcore" target="_blank" rel="noopener noreferrer">Learn More on Discord</a>
+      </div>
+    </div>
   </section>
 
   <!-- ===== ABOUT / INFO ===== -->
@@ -447,12 +488,17 @@
         <a href="#servers">Servers</a>
         <a href="#roadmap">Roadmap</a>
         <a href="#map">Map</a>
+        <a href="#hardcore">Hardcore</a>
         <a href="https://discord.gg/47PJvtFb" target="_blank" rel="noopener noreferrer">Discord</a>
       </nav>
       <p class="footer-legal">© 2026 Runespire &nbsp;·&nbsp; Not affiliated with Hytale or Aternum Game Studios</p>
     </div>
   </footer>
 
+  <!-- Launch-day fire overlay (driven by js/launch-event.js) -->
+  <canvas id="fire-particles" aria-hidden="true"></canvas>
+
   <script src="js/main.js"></script>
+  <script src="js/launch-event.js"></script>
 </body>
 </html>

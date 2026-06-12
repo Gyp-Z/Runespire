@@ -1857,6 +1857,274 @@ ul, ol { list-style: none; }
 }
 
 /* ============================================================
+   HARDCORE SMP — countdown + launch event
+   ============================================================ */
+.section--hardcore {
+  background:
+    linear-gradient(180deg, rgba(80, 0, 0, 0.6) 0%, var(--bg) 100%),
+    var(--bg);
+  border-top: 1px solid rgba(220, 38, 38, 0.5);
+  box-shadow: inset 0 14px 36px -14px rgba(220, 38, 38, 0.35);
+}
+
+/* Crimson ambient orbs instead of the default gold/purple */
+.section--hardcore::before {
+  background:
+    radial-gradient(ellipse 480px 360px at 15% 20%, rgba(220, 38, 38, 0.1), transparent 70%),
+    radial-gradient(ellipse 520px 400px at 85% 80%, rgba(255, 100, 0, 0.06), transparent 70%);
+}
+
+.section-title--hardcore {
+  text-shadow: 0 0 20px rgba(220, 38, 38, 0.8), 0 0 40px rgba(220, 38, 38, 0.4);
+}
+
+.section-rule--red {
+  background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.8), transparent);
+}
+
+.hardcore-tagline {
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: clamp(0.7rem, 1.8vw, 0.85rem);
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(225, 110, 110, 0.8);
+  margin-bottom: 48px;
+}
+
+/* Progress bar pinned to the very top of the section */
+.hardcore-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(220, 38, 38, 0.12);
+  z-index: 3;
+}
+
+.hardcore-progress__fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, rgba(220, 38, 38, 0.5), #dc2626, #ff6b35);
+  transition: width 1s linear;
+  animation: progressGlow 2.2s ease-in-out infinite;
+}
+
+@keyframes progressGlow {
+  0%, 100% { box-shadow: 0 0 8px rgba(220, 38, 38, 0.5); }
+  50%      { box-shadow: 0 0 16px rgba(255, 107, 53, 0.9); }
+}
+
+/* Countdown blocks */
+.countdown {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: clamp(12px, 3vw, 28px);
+  margin-bottom: 48px;
+}
+
+.countdown-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: clamp(120px, 20vw, 180px);
+  padding: 28px 16px 22px;
+  background: rgba(12, 5, 8, 0.6);
+  border: 1px solid rgba(220, 38, 38, 0.35);
+  border-radius: var(--radius);
+  box-shadow: 0 0 24px rgba(220, 38, 38, 0.1), inset 0 0 18px rgba(0, 0, 0, 0.5);
+}
+
+.countdown-num {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: clamp(3rem, 6vw, 6rem);
+  line-height: 1;
+  color: var(--gold-light);
+  text-shadow: 0 0 18px rgba(220, 38, 38, 0.35);
+  font-variant-numeric: tabular-nums;
+}
+
+.countdown-label {
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(225, 110, 110, 0.7);
+}
+
+.countdown-block--seconds {
+  animation: hardcorePulse 2s ease-in-out infinite;
+}
+
+@keyframes hardcorePulse {
+  0%, 100% {
+    border-color: rgba(220, 38, 38, 0.35);
+    box-shadow: 0 0 18px rgba(220, 38, 38, 0.12), inset 0 0 18px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    border-color: rgba(220, 38, 38, 0.75);
+    box-shadow: 0 0 34px rgba(220, 38, 38, 0.4), inset 0 0 18px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Live message shown when the countdown hits zero */
+.countdown-live {
+  text-align: center;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: clamp(1.2rem, 3.5vw, 2rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ff4444;
+  margin-bottom: 48px;
+  animation: liveGlow 1.6s ease-in-out infinite;
+}
+
+@keyframes liveGlow {
+  0%, 100% { text-shadow: 0 0 16px rgba(220, 38, 38, 0.5); }
+  50%      { text-shadow: 0 0 30px rgba(220, 38, 38, 0.95), 0 0 60px rgba(220, 38, 38, 0.5); }
+}
+
+/* Hardcore teaser card */
+.hardcore-card {
+  position: relative;
+  overflow: hidden;
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 40px 32px;
+  background: rgba(15, 5, 8, 0.55);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  border-radius: var(--radius);
+  box-shadow: 0 0 30px rgba(220, 38, 38, 0.1);
+}
+
+/* Faint skull watermark drifting in the card's corner */
+.hardcore-card::before {
+  content: '💀';
+  position: absolute;
+  right: -24px;
+  bottom: -36px;
+  font-size: 11rem;
+  line-height: 1;
+  opacity: 0.05;
+  pointer-events: none;
+  animation: skullDrift 9s ease-in-out infinite alternate;
+}
+
+@keyframes skullDrift {
+  from { transform: rotate(-14deg) translateY(0); }
+  to   { transform: rotate(-6deg) translateY(-14px); }
+}
+
+.hardcore-card__icon { font-size: 2.2rem; margin-bottom: 14px; }
+
+.hardcore-card__title {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #ff6b6b;
+  margin-bottom: 14px;
+}
+
+.hardcore-card__text {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  max-width: 480px;
+  margin: 0 auto 26px;
+}
+
+.btn-hardcore {
+  display: inline-block;
+  padding: 12px 28px;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #ff6b6b;
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid rgba(220, 38, 38, 0.6);
+  border-radius: var(--radius);
+  transition: background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.btn-hardcore:hover {
+  color: #fff;
+  background: rgba(220, 38, 38, 0.25);
+  border-color: #dc2626;
+  box-shadow: 0 0 20px rgba(220, 38, 38, 0.3);
+}
+
+/* Hardcore nav pill */
+.nav-link--hardcore {
+  color: rgba(220, 38, 38, 0.8);
+  background: rgba(220, 38, 38, 0.08);
+  border: 1px solid rgba(220, 38, 38, 0.2);
+}
+
+.nav-link--hardcore:hover {
+  color: #ff4444;
+  background: rgba(220, 38, 38, 0.15);
+  border-color: rgba(220, 38, 38, 0.5);
+  box-shadow: 0 0 14px rgba(220, 38, 38, 0.3);
+}
+
+/* Fire overlay canvas (launch day) */
+#fire-particles {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* One-time rune flash on launch */
+.rune-flash {
+  position: fixed;
+  z-index: 200;
+  font-family: var(--font-heading);
+  color: var(--gold-light);
+  text-shadow: 0 0 20px rgba(201, 168, 76, 0.8), 0 0 40px rgba(220, 38, 38, 0.4);
+  pointer-events: none;
+  opacity: 0;
+  animation: runeFlash 2s ease forwards;
+}
+
+@keyframes runeFlash {
+  0%   { opacity: 0; transform: scale(0.6) translateY(12px); }
+  25%  { opacity: 1; transform: scale(1.12) translateY(0); }
+  60%  { opacity: 1; transform: scale(1) translateY(-10px); }
+  100% { opacity: 0; transform: scale(1) translateY(-26px); }
+}
+
+/* Post-launch ambient shift (body.launched set by launch-event.js) */
+body.launched {
+  --bg: #0f0805;
+  --bg-section: #110a08;
+}
+
+body.launched .section-rule {
+  background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.7), var(--gold), rgba(220, 38, 38, 0.7), transparent);
+}
+
+body.launched .site-nav.scrolled {
+  background: rgba(15, 5, 5, 0.92);
+}
+
+body.launched .title {
+  text-shadow: 0 0 20px rgba(201, 168, 76, 0.5), 0 0 40px rgba(220, 38, 38, 0.3), 0 0 80px rgba(220, 38, 38, 0.15);
+}
+
+/* ============================================================
    SITE LIFE — scroll reveals, ambient glow, hover polish
    ============================================================ */
 
@@ -2056,6 +2324,10 @@ ul, ol { list-style: none; }
   .event-card__label--live,
   .roadmap-item--active .roadmap-marker,
   .map-live__dot,
+  .countdown-block--seconds,
+  .countdown-live,
+  .hardcore-card::before,
+  .hardcore-progress__fill,
   .map-soon__badge { animation: none; }
 }
 

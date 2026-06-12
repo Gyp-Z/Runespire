@@ -78,6 +78,14 @@
     resize();
     buildParticles();
   });
+
+  // Launch-day hook: launch-event.js calls this to mix fire tones
+  // into the ambient particle field once the Hardcore SMP is live.
+  window.launchParticleUpgrade = () => {
+    if (COLORS.indexOf('rgba(220,38,38,') !== -1) return;
+    COLORS.push('rgba(220,38,38,', 'rgba(255,100,0,');
+    buildParticles();
+  };
 })();
 
 
@@ -254,6 +262,7 @@
     '.about-grid > *', '.ranks-grid > *', '.events-grid > *',
     '.servers-grid > *', '.kits-grid > *', '.roadmap-item',
     '.life-item', '.store-note', '.kits-note', '.map-shell', '.map-note',
+    '.hardcore-tagline', '.countdown', '.hardcore-card',
   ];
   const els = document.querySelectorAll(selectors.join(','));
   if (!els.length) return;
