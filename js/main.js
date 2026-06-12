@@ -192,23 +192,15 @@
 })();
 
 
-/* ── Launch callout → scroll to Hardcore SMP card ──────────── */
+/* ── Launch callout → scroll to the Hardcore countdown ─────── */
 (function initLaunchCallout() {
   const callout = document.getElementById('launchCallout');
-  const card    = document.getElementById('hardcore-smp');
-  if (!callout || !card) return;
+  const target  = document.getElementById('hardcore');
+  if (!callout || !target) return;
 
   callout.addEventListener('click', (e) => {
     e.preventDefault();
-    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-    // Restart the highlight animation if it's already running
-    card.classList.remove('about-card--highlight');
-    void card.offsetWidth;
-    card.classList.add('about-card--highlight');
-    card.addEventListener('animationend', () => {
-      card.classList.remove('about-card--highlight');
-    }, { once: true });
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 })();
 
