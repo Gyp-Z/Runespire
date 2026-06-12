@@ -281,13 +281,13 @@ ul, ol { list-style: none; }
   gap: 12px;
   margin-top: 4px;
   padding: 11px 22px;
-  border: 1px solid rgba(220, 38, 38, 0.4);
+  border: 1px solid var(--gold-border);
   border-radius: 999px;
-  /* hardcore-red so it reads as a warning, matching the #hardcore section */
-  background: rgba(220, 38, 38, 0.06);
+  /* gold like the rest of the hero — the red lives in the sheen + ember glow */
+  background: rgba(201, 168, 76, 0.05);
   overflow: hidden;
   cursor: pointer;
-  animation: revealUp 0.5s ease forwards 1.9s, calloutGlowRed 2.6s ease-in-out infinite 2.4s;
+  animation: revealUp 0.5s ease forwards 1.9s, calloutEmber 2.6s ease-in-out infinite 2.4s;
   opacity: 0;
   transform: translateY(16px);
   /* scale is a separate property so hover works despite the animation's fill-mode owning transform */
@@ -296,11 +296,11 @@ ul, ol { list-style: none; }
 }
 
 .launch-callout:hover {
-  border-color: rgba(220, 38, 38, 0.7);
+  border-color: rgba(201, 168, 76, 0.55);
   scale: 1.04;
 }
 
-/* Gold sheen sweeping across the pill */
+/* Red shine sweeping across the gold pill — the "means business" cue */
 .launch-callout::after {
   content: '';
   position: absolute;
@@ -308,7 +308,7 @@ ul, ol { list-style: none; }
   bottom: 0;
   left: -60%;
   width: 40%;
-  background: linear-gradient(105deg, transparent, rgba(255, 110, 90, 0.13), transparent);
+  background: linear-gradient(105deg, transparent, rgba(255, 70, 50, 0.2), transparent);
   transform: skewX(-20deg);
   animation: calloutSheen 4.5s ease-in-out infinite 3s;
   pointer-events: none;
@@ -329,10 +329,10 @@ ul, ol { list-style: none; }
   font-size: 0.7rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  /* outlined red chip, matching the hardcore nav pill */
-  color: #ff6b6b;
-  background: rgba(220, 38, 38, 0.12);
-  border: 1px solid rgba(220, 38, 38, 0.35);
+  /* outlined gold chip, same language as the rank badges and buttons */
+  color: var(--gold);
+  background: rgba(201, 168, 76, 0.12);
+  border: 1px solid var(--gold-border);
   padding: 4px 10px;
   border-radius: 4px;
   white-space: nowrap;
@@ -350,7 +350,7 @@ ul, ol { list-style: none; }
 
 .launch-callout__text strong {
   font-weight: 600;
-  color: #ff6b6b;
+  color: var(--gold);
 }
 
 /* Chevron hint — same construction as the scroll indicator arrow */
@@ -359,14 +359,14 @@ ul, ol { list-style: none; }
   width: 8px;
   height: 8px;
   margin-top: -4px;
-  border-right: 2px solid rgba(220, 38, 38, 0.6);
-  border-bottom: 2px solid rgba(220, 38, 38, 0.6);
+  border-right: 2px solid var(--gold-dim);
+  border-bottom: 2px solid var(--gold-dim);
   transform: rotate(45deg);
   transition: transform 0.25s ease, border-color 0.25s ease;
 }
 
 .launch-callout:hover .launch-callout__arrow {
-  border-color: #ff6b6b;
+  border-color: var(--gold-light);
   transform: rotate(45deg) translate(3px, 3px);
 }
 
@@ -381,9 +381,10 @@ ul, ol { list-style: none; }
   50%      { box-shadow: 0 0 24px rgba(201, 168, 76, 0.22); }
 }
 
-@keyframes calloutGlowRed {
-  0%, 100% { box-shadow: 0 0 12px rgba(220, 38, 38, 0.15); }
-  50%      { box-shadow: 0 0 24px rgba(220, 38, 38, 0.3); }
+/* Gold at rest, breathing toward red at the peak — gold pill, red intent */
+@keyframes calloutEmber {
+  0%, 100% { box-shadow: 0 0 12px var(--gold-glow); }
+  50%      { box-shadow: 0 0 22px rgba(220, 38, 38, 0.28); }
 }
 
 @keyframes pulseDotRed {
@@ -1871,18 +1872,34 @@ ul, ol { list-style: none; }
    HARDCORE SMP — countdown + launch event
    ============================================================ */
 .section--hardcore {
-  background:
-    linear-gradient(180deg, rgba(80, 0, 0, 0.6) 0%, var(--bg) 100%),
-    var(--bg);
-  border-top: 1px solid rgba(220, 38, 38, 0.5);
-  box-shadow: inset 0 14px 36px -14px rgba(220, 38, 38, 0.35);
+  /* --heat is scroll-driven (0.25 → 1) by main.js as the section
+     enters the viewport, so the red atmosphere swells seamlessly
+     instead of arriving as a hard-edged block */
+  --heat: 0.6;
+  /* base flows from the hero's bg into the About section's bg */
+  background: linear-gradient(180deg, var(--bg) 0%, var(--bg-section) 100%);
 }
 
-/* Crimson ambient orbs instead of the default gold/purple */
+/* Animated war-drum atmosphere: a red core beating like a heart over
+   a purple undertone, fading to transparent at both edges so the
+   section blends into its neighbors */
 .section--hardcore::before {
   background:
-    radial-gradient(ellipse 480px 360px at 15% 20%, rgba(220, 38, 38, 0.1), transparent 70%),
-    radial-gradient(ellipse 520px 400px at 85% 80%, rgba(255, 100, 0, 0.06), transparent 70%);
+    radial-gradient(ellipse 75% 55% at 50% 32%, rgba(180, 20, 20, 0.34), transparent 72%),
+    radial-gradient(ellipse 45% 40% at 18% 78%, rgba(255, 100, 0, 0.10), transparent 65%),
+    radial-gradient(ellipse 50% 45% at 84% 62%, rgba(107, 33, 168, 0.14), transparent 65%),
+    linear-gradient(180deg, transparent 0%, rgba(80, 0, 0, 0.22) 20%, rgba(80, 0, 0, 0.22) 80%, transparent 100%);
+  opacity: var(--heat);
+  animation: hardcoreHeartbeat 2.6s ease-in-out infinite;
+}
+
+/* Lub-dub double pulse, like a heartbeat under the floor */
+@keyframes hardcoreHeartbeat {
+  0%, 100% { transform: scale(1);     filter: brightness(1); }
+  14%      { transform: scale(1.03);  filter: brightness(1.3); }
+  26%      { transform: scale(1);     filter: brightness(1); }
+  40%      { transform: scale(1.018); filter: brightness(1.16); }
+  54%      { transform: scale(1);     filter: brightness(1); }
 }
 
 .section-title--hardcore {
@@ -1947,7 +1964,10 @@ ul, ol { list-style: none; }
   background: rgba(12, 5, 8, 0.6);
   border: 1px solid rgba(220, 38, 38, 0.35);
   border-radius: var(--radius);
-  box-shadow: 0 0 24px rgba(220, 38, 38, 0.1), inset 0 0 18px rgba(0, 0, 0, 0.5);
+  /* glow strength rides the scroll-driven heat */
+  box-shadow:
+    0 0 24px rgba(220, 38, 38, calc(0.04 + 0.14 * var(--heat, 0.6))),
+    inset 0 0 18px rgba(0, 0, 0, 0.5);
 }
 
 .countdown-num {
@@ -1956,7 +1976,7 @@ ul, ol { list-style: none; }
   font-size: clamp(3rem, 6vw, 6rem);
   line-height: 1;
   color: var(--gold-light);
-  text-shadow: 0 0 18px rgba(220, 38, 38, 0.35);
+  text-shadow: 0 0 18px rgba(220, 38, 38, calc(0.12 + 0.42 * var(--heat, 0.6)));
   font-variant-numeric: tabular-nums;
 }
 
@@ -2331,6 +2351,7 @@ body.launched .title {
     transition: none;
   }
   .section::before,
+  .section--hardcore::before,
   .rank-card__badge-featured,
   .event-card__label--live,
   .roadmap-item--active .roadmap-marker,
