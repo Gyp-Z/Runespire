@@ -2,7 +2,7 @@
    RUNESPIRE — launch-event.js
    Hardcore SMP countdown + launch-day ambiance.
 
-   Counts down to Saturday June 14, 2026 12:00 PM EST. At zero
+   Counts down to Saturday June 13, 2026 12:00 PM EST. At zero
    (or on any visit after launch) the site enters "launched"
    mode: live banner, warmer palette (body.launched), fire/ember
    overlay, upgraded ambient particles — plus a one-time rune
@@ -10,7 +10,7 @@
    ============================================================ */
 
 (function hardcoreLaunchSystem() {
-  var LAUNCH_TS     = new Date('2026-06-14T12:00:00-04:00').getTime();
+  var LAUNCH_TS     = new Date('2026-06-13T12:00:00-04:00').getTime();
   var PROGRESS_FROM = new Date('2026-06-01T00:00:00-04:00').getTime();
   var STORAGE_KEY   = 'runespire_launched';
 
